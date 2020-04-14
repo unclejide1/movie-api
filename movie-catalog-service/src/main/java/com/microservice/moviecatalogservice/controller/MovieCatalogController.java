@@ -31,23 +31,23 @@ public class MovieCatalogController {
     }
 
     @RequestMapping("/{userid}")
-    public List<CatalogItem> getCatalog( @PathVariable("userid") String userid){
+    public List<CatalogItem> getCatalog(@PathVariable("userid") String userid) {
 
 
-        UserRating  ratings = restTemplate.getForObject("http://localhost:8083/ratingsdata/users/"
+        UserRating ratings = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/"
                 + userid, UserRating.class);
-       return ratings.getUserRating().stream().map(rating -> {
-           Movie movie = restTemplate.getForObject("http://localhost:8082/movies/"
-                   + rating.getMovieId(), Movie.class);
+        return ratings.getUserRating().stream().map(rating -> {
+            Movie movie = restTemplate.getForObject("http://movie-info-service/movies/"
+                    + rating.getMovieId(), Movie.class);
 //           Movie movie =webClientBuilder.build().get()
 //                   .uri("http://localhost:8082/movies/"
 //                   + rating.getMovieId())
 //                   .retrieve()
 //                   .bodyToMono(Movie.class).block();
-           assert movie != null;
-           return new CatalogItem(movie.getName(), "interesting", rating.getRating());
-       })
-               .collect(Collectors.toList());
+            assert movie != null;
+            return new CatalogItem(movie.getName(), "interesting", rating.getRating());
+        })
+                .collect(Collectors.toList());
         //get all rated movie Ids
         //for each movie Id, call movie into service and get details
         //put them all together

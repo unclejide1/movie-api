@@ -15,12 +15,12 @@ import java.util.List;
 public class RatingController {
 
     @RequestMapping("/{movieid}")
-    public Rating getRating(@PathVariable("movieid") String movieid){
+    public Rating getRating(@PathVariable("movieid") String movieid) {
         return new Rating(movieid, 4);
     }
 
     @RequestMapping("users/{userId}")
-    public UserRating getUserRating(@PathVariable("userId") String userId){
+    public UserRating getUserRating(@PathVariable("userId") String userId) {
 
         List<Rating> ratings = Arrays.asList
                 (new Rating("1234", 4), new Rating("5678", 3));

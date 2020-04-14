@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieInfoController {
 
     @RequestMapping("/{movieid}")
-    public Movie getMovieInto(@PathVariable("movieid") String movieid){
+    public Movie getMovieInto(@PathVariable("movieid") String movieid) {
         return new Movie(movieid, "test-name");
 
     }
