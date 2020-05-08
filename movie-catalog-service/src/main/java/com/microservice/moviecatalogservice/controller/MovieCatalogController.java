@@ -45,7 +45,7 @@ public class MovieCatalogController {
 //                   .retrieve()
 //                   .bodyToMono(Movie.class).block();
             assert movie != null;
-            return new CatalogItem(movie.getName(), "interesting", rating.getRating());
+            return new CatalogItem(movie.getName(),movie.getDescription(), rating.getRating());
         })
                 .collect(Collectors.toList());
         //get all rated movie Ids
